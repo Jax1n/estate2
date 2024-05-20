@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--    <section class="center">-->
+<!--      <form action="" method="get">-->
+<!--        <h3>найти</h3>-->
+<!--        <div class="box">-->
+<!--          <p><span>введите местоположение</span></p>-->
+<!--          <input type="text" name="q" required maxlength="50"-->
+<!--          placeholder="введите имя города" class="input">-->
+<!--        </div>-->
+<!--        <div class="flex">-->
+<!--          <div class="box">-->
+<!--            <p><span>тип недвижимости</span></p>-->
+<!--            <select name="type" class="input" required>-->
+<!--              <option value="flat">квартира</option>-->
+<!--              <option value="house">дом</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="box">-->
+<!--            <p><span>количество комнат</span></p>-->
+<!--            <select name="minimum" class="input" required>-->
+<!--              <option value="1">1</option>-->
+<!--              <option value="2">2</option>-->
+<!--              <option value="3">3</option>-->
+<!--              <option value="4">4</option>-->
+<!--              <option value="5">5</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="box">-->
+<!--            <p><span>минимальный бюджет</span></p>-->
+<!--            <select name="minimum" class="input" required>-->
+<!--              <option value="1">20000</option>-->
+<!--              <option value="2">30000</option>-->
+<!--              <option value="3">40000</option>-->
+<!--              <option value="4">50000</option>-->
+<!--              <option value="5">60000</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          <div class="box">-->
+<!--            <p><span>максимальный бюджет</span></p>-->
+<!--            <select name="minimum" class="input" required>-->
+<!--              <option value="1">20000</option>-->
+<!--              <option value="2">30000</option>-->
+<!--              <option value="3">40000</option>-->
+<!--              <option value="4">50000</option>-->
+<!--              <option value="5">60000</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <input type="submit" value="поиск" name="query" class="btn">-->
+<!--      </form>-->
+<!--    </section>-->
+
+
+    <section class="listings">
+    <h1 class="heading">Продажа</h1>
+
+
+    <div class="box-container">
+      {% for product in products %}
+      <div class="box">
+        <div class="thumb">
+          <form action="" method="post" class="save">
+            <button type="submit" class="fa fa-heart"></button>
+              {% csrf_token %}
+          </form>
+          <img src="{{ product.images.url }}" alt="">
+        </div>
+        <h3 class="name">{{ product.name }}</h3>
+        <p class="location"><i class="fa fa-map-marker-alt"></i><span>{{ product.location }}</span></p>
+        <div class="flex">
+          <p><i class="fa fa-bed"></i><span>{{ product.bedroom }}</span></p>
+          <p><i class="fa fa-bath"></i><span>{{ product.bathroom }}</span></p>
+          <p><i class="fa fa-maximize"></i><span>{{ product.square }}</span></p>
+        </div>
+        <a href="{% url 'catalog:product' product.slug %}" class="btn">посмотреть</a>
+      </div>
+      {% endfor %}
+    </div>
+
+<!--    <div style="margin-top: 2rem; text-align:center;">-->
+<!--      <a href="" class="inline-btn">посмотреть всё</a>-->
+<!--    </div>-->
+    </section>
+
+  <section class="services">
+
+   <h1 class="heading">Наши сервисы</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <img src="{% static 'images/icon-1.png' %}" alt="">
+         <h3>buy house</h3>
+         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+      </div>
+
+
+      <div class="box">
+         <img src="{% static 'images/icon-4.png' %}" alt="">
+         <h3>flats and buildings</h3>
+         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+      </div>
+
+      <div class="box">
+         <img src="{% static 'images/icon-6.png' %}" alt="">
+         <h3>24/7 service</h3>
+         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, incidunt.</p>
+      </div>
+
+   </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+  <section class="flex">
+    <div class="box">
+      <a href="tel:123456789"><i class="fa fa-phone"></i><span>123456789</span></a>
+      <a href="tel:111111111"><i class="fa fa-phone"></i><span>111111111</span></a>
+      <a href="mailto:example@gmail.com"><i class="fa fa-envelope"></i><span>example@gmail.com</span></a>
+      <a href="#"><i class="fa fa-map-marker-alt"></i><span>бишкек, кыргызстан</span></a>
+    </div>
+
+    <div class="box">
+      <a href="{% url 'main:index' %}"><span>главная</span></a>
+      <a href="{% url 'main:about' %}"><span>о нас</span></a>
+    </div>
+
+    <div class="box">
+      <a href="#"><span>facebook</span><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><span>twitter</span><i class="fab fa-instagram"></i></a>
+      <a href="#"><span>telegram</span><i class="fab fa-telegram"></i></a>
+    </div>
+  </section>
+</footer>
+{% endblock %}

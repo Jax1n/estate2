@@ -1,0 +1,3 @@
+Команда для установки нужных библиотек
+
+pip install -r requirements.txt

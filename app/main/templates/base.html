@@ -1,0 +1,74 @@
+{% load static %}
+{% load goods_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой дом</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar nav-1">
+      <section class="flex">
+        <a href="{% url 'main:index' %}" class="logo"><i class="fa fa-house"></i>MyHome</a>
+      </section>
+    </nav>
+
+    <nav class="navbar nav-2">
+      <section class="flex">
+        <div id="menu-btn" class="fa fa-bars"></div>
+        <div class="menu">
+          <ul>
+            <li><a href="#">каталог<i class="fa fa-angle-down"></i></a>
+              <ul>
+                  <ul>
+                      {% tag_categories as categories %}
+                  {% for category in categories %}
+                      <li><a href="{% url 'catalog:index' category.slug %}">{{ category.name }}</a></li>
+                  {% endfor %}
+                  </ul>
+              </ul>
+            </li>
+            <li><a href="#">помощь<i class="fa fa-angle-down"></i></a>
+              <ul>
+                <li><a href="{% url 'main:about' %}">о нас</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <ul>
+            {% if user.is_authenticated %}
+          <li><a href="{% url 'main:cart' %}">корзина <i class="fa fa-heart"></i></a></li>
+           <li><a href="#">аккаунт<i class="fa fa-angle-down"></i></a>
+               <ul>
+                  <li><a href="{% url 'account:logout' %}">выйти</a></li>
+               </ul>
+               {% else %}
+               <ul>
+                  <li><a href="{% url 'account:login' %}">вход</a></li>
+               </ul>
+               {% endif %}
+            </li>
+
+        </ul>
+		
+
+      </section>
+    </nav>
+  </header>
+
+
+  <div class="home">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block footer %}{% endblock %}
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

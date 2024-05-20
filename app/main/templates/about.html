@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <section class="about">
+   <div class="row">
+      <div class="image">
+         <img src="{% static 'images/about-img.svg' %}" alt="">
+      </div>
+      <div class="content">
+         <h3>О компании</h3>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dolorem provident voluptatum distinctio laborum veritatis vitae suscipit praesentium fugiat unde?</p>
+      </div>
+   </div>
+
+</section>
+{% endblock %}
+
+{% block footer %}
+  <footer class="footer">
+  <section class="flex">
+    <div class="box">
+      <a href="tel:123456789"><i class="fa fa-phone"></i><span>123456789</span></a>
+      <a href="tel:111111111"><i class="fa fa-phone"></i><span>111111111</span></a>
+      <a href="mailto:example@gmail.com"><i class="fa fa-envelope"></i><span>example@gmail.com</span></a>
+      <a href="#"><i class="fa fa-map-marker-alt"></i><span>бишкек, кыргызстан</span></a>
+    </div>
+
+    <div class="box">
+      <a href="{% url 'main:index' %}"><span>главная</span></a>
+      <a href="{% url 'main:about' %}"><span>о нас</span></a>
+    </div>
+
+    <div class="box">
+      <a href="#"><span>facebook</span><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><span>twitter</span><i class="fab fa-instagram"></i></a>
+      <a href="#"><span>telegram</span><i class="fab fa-telegram"></i></a>
+    </div>
+  </section>
+</footer>
+{% endblock %}
