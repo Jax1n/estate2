@@ -28,8 +28,6 @@ socket.getaddrinfo('smtp.gmail.com', 80)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'slang6682@gmail.com'
-EMAIL_HOST_PASSWORD = 'qrmd gzcx twyw utuj'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
